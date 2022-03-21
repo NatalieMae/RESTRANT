@@ -17,7 +17,7 @@ function show (data) {
                 Delete
               </button>
             </form> 
-            <li><a href='/places'>Go to Places</a></li>
+            <li><a href='/places'>Go Back to Places</a></li>
         </Def>
     )
 }

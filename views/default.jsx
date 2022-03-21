@@ -26,7 +26,7 @@ function Def (html) {
             </body>
         </html>
     )
-  }
+}
 
 module.exports = Def
 
