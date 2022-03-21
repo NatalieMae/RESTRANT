@@ -32,7 +32,7 @@ router.put('/:id', (req, res) => {
   }
   else {
       if (!req.body.pic) {
-        req.body.pic = "../public/images/2022StMarysTower.jpg/400/400"
+        req.body.pic = "../public/images/2022StMarysTower.jpg"
       }
       if (!req.body.city) {
         req.body.city = ""
@@ -40,7 +40,7 @@ router.put('/:id', (req, res) => {
       if (!req.body.state) {
         req.body.state = ""
       }
-      
+
       places[id] = req.body
       res.redirect(`/places/${id}`)
   }
