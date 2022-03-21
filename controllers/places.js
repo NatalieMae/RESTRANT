@@ -22,6 +22,30 @@ router.get('/:id', (req, res) => {
   }
 })
 
+router.put('/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+      res.render('error404')
+  }
+  else if (!places[id]) {
+      res.render('error404')
+  }
+  else {
+      if (!req.body.pic) {
+        req.body.pic = "../public/images/2022StMarysTower.jpg/400/400"
+      }
+      if (!req.body.city) {
+        req.body.city = ""
+      }
+      if (!req.body.state) {
+        req.body.state = ""
+      }
+      
+      places[id] = req.body
+      res.redirect(`/places/${id}`)
+  }
+})
+
 router.delete('/:id', (req, res) => {
   let id = Number(req.params.id)
   if (isNaN(id)) {
