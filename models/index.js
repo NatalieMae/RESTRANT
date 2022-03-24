@@ -1,4 +1,4 @@
-require('dotenv').require()
+require('dotenv').config()     //Houston We have a problem here Per Terminal
 const mongoose = require('mongoose')
 
 mongoose.connect(process.env.MONGO_URI, {
