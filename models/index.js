@@ -1,4 +1,4 @@
-require('dotenv').config()     //Houston We have a problem here Per Terminal
+require('dotenv').config()     //Houston We have a problem here Per Termiana
 const mongoose = require('mongoose')
 
 mongoose.connect(process.env.MONGO_URI, {
