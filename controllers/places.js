@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   if (!req.body.pic) {
-    req.body.pic = "/public/images/2022StMarysTower.jpg"
+    req.body.pic = "/public/images/2022StMarysTower.jpg/400/400"
   }
   db.Place.create(req.body)
   .then(() => {
@@ -53,19 +53,35 @@ router.get('/:id', (req, res) => {
   })
 })
 
-router.post('/:id/comment/', (req, res) => {
-  console.log(req, body)
-  res.send('GET/places/:id/comment stub')
+router.post('/:id/comment', (req, res) => {
+  console.log(req.body)
+  db.Place.findById(req.params.id)
+  .then(place => {
+      db.Comment.create(req.body)
+      .then(comment => {
+          place.comments.push(comment.id)
+          place.save()
+          .then(() => {
+              res.redirect(`/places/${req.params.id}`)
+          })
+      })
+      .catch(err => {
+          res.render('error404')
+      })
+  })
+  .catch(err => {
+      res.render('error404')
+  })
+  req.body.rant = req.body.rant ? true : false
+  res.send('GET /places/:id/comment stub')
 })
 
 
-// router.put('/:id', (req, res) => {
-//   res.send('PUT /places/:id stub')
-// })
+router.put('/:id', (req, res) => {
+  res.send('PUT /places/:id stub')
+})
 
-// router.delete('/:id', (req, res) => {
-//   res.send('DELETE /places/:id stub')
-// })
+
 
 // router.get('/:id/edit', (req, res) => {
 //   res.send('GET edit form stub')
@@ -74,6 +90,10 @@ router.post('/:id/comment/', (req, res) => {
 router.post('/:id/rant', (req, res) => {
   res.send('GET /places/:id/rant stub')
 })
+
+// router.delete('/:id', (req, res) => {
+//   res.send('DELETE /places/:id stub')
+// })
 
 router.delete('/:id/rant/:rantId', (req, res) => {
     res.send('GET /places/:id/rant/:rantId stub')
