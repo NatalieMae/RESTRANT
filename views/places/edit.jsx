@@ -3,6 +3,14 @@ const Def = require('../default.jsx')
 
 function edit_form (data) {
     console.log('hello peeps', data)
+    let message = ''
+    if (data.message) {
+      message = (
+        <h4 className='alert Danger!'>
+          {data.message}
+        </h4>
+      )
+    }
     return (
         <Def>
             <main>
